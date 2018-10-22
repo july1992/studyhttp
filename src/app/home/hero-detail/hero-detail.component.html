@@ -1,0 +1,11 @@
+<div *ngIf="hero">
+  详情页面
+  <div><span>详情：id:</span>{{hero.id}}</div>
+  <div><span>详情：name:</span>{{hero.name}}</div>
+  <label>name:
+
+    <input [(ngModel)]="hero.name" placeholder="name">
+  </label>
+
+  <button  class="vily" (click)="goBack()">返回上级</button>
+</div>
