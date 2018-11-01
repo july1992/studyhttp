@@ -104,4 +104,37 @@ export class HeroService {
   }
 }
 ```
+## 订阅者模式 接收网络请求反馈的数据
+```
+export class HerolistComponent implements OnInit {
+  heroes: Hero[];
+  constructor(private heroService: HeroService) { }
+  ngOnInit() {
+    this.getHeroes();
+  }
+  getHeroes(): void {
+    this.heroService.getHeroes()
+      .subscribe(r => {
+        console.log(r);
+        this.heroes = r;
+      });
+  }
+  add(name: string): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    console.log('--------' + {name}.name);
+    this.heroService.addHero({name} as Hero )
+      .subscribe(hero => {
+        this.heroes.push(hero);
+      });
+  }
+  deleteHero(hero: Hero ): void {
+    this.heroes = this.heroes.filter(h => h !== hero);
+    this.heroService.deleteHero(hero)
+      .subscribe();
+  }
 
+}
+```
