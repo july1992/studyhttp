@@ -10,6 +10,7 @@ import {HeroService} from '../../service/hero.service';
 })
 export class HerolistComponent implements OnInit {
   heroes: Hero[];
+  // hero: Hero ;
   // selectedHero: Hero;
 
   constructor(private heroService: HeroService) { }
@@ -24,9 +25,21 @@ export class HerolistComponent implements OnInit {
         this.heroes = r;
       });
   }
-  // onSelect(hero: Hero): void {
-  //   this.selectedHero = hero;
-  // }
-  //
+  add(name: string): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    console.log('--------' + {name}.name);
+    this.heroService.addHero({name} as Hero )
+      .subscribe(hero => {
+        this.heroes.push(hero);
+      });
+  }
+  deleteHero(hero: Hero ): void {
+    this.heroes = this.heroes.filter(h => h !== hero);
+    this.heroService.deleteHero(hero)
+      .subscribe();
+  }
 
 }
