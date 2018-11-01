@@ -11,7 +11,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 angular 初始学习 使用angular6  ， 网络请求：
 
 ## 初始化 
-` `` 
+```
 export class HeroService {
   private heroesUrl = 'http://192.168.1.127:8086/vily/';
   constructor(
@@ -19,9 +19,9 @@ export class HeroService {
     private messageService: MessageService
   ) { }
 }
-` `` 
+```
 ## 请求单个对象
-` `` 
+```
   getHero(id: number): Observable<Hero> {
     const url = this.heroesUrl + 'getHeroById' + '?id=' + id;
     // const url = this.heroesUrl + 'getHeroById' ;
@@ -30,10 +30,9 @@ export class HeroService {
       tap(_ => this.log(`请求 hero id=${id}`)),
       catchError(this.handleError<Hero>(`getHero id=${id}`))
     );
-  }
-` `` 
+```
 ## 请求列表
-` `` 
+```
   getHeroes(): Observable<Hero[]> {
     const url2 = this.heroesUrl + 'getHeroes';
     console.log('-------' + url2);
@@ -45,9 +44,9 @@ export class HeroService {
         catchError(this.handleError('getHeroes', []))
       );
   }
-` `` 
+```
 ## 更新对象
-` `` 
+```
   updateHero(hero: Hero): Observable<any> {
     const urlUpdate = this.heroesUrl + 'updateHero' ;
     return this.http.put(urlUpdate, hero, httpOptions).pipe(
@@ -55,7 +54,7 @@ export class HeroService {
       catchError(this.handleError<any>('updateHero'))
     );
   }
-` `` 
+```
 ## 增加对象
 
   addHero (hero: Hero): Observable<Hero> {
@@ -67,7 +66,7 @@ export class HeroService {
   }
 
 ## 删除对象
-
+```
   deleteHero (hero: Hero): Observable<Hero> {
     const urlAdd = this.heroesUrl + 'deleteHero';
     return this.http.post<Hero>(urlAdd, hero , httpOptions).pipe(
@@ -75,9 +74,9 @@ export class HeroService {
       catchError(this.handleError<Hero>('deleteHero'))
     );
   }
-
+```
 ## 查询对象列表
-
+```
   searchHeroes(term: string): Observable<Hero[]> {
     if (!term.trim()) {
       // if not search term, return empty hero array.
@@ -89,9 +88,9 @@ export class HeroService {
       catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
   }
-
+```
 ## 抽取 log  和  error
-
+```
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
   }
@@ -104,5 +103,5 @@ export class HeroService {
     };
   }
 }
-
+```
 
